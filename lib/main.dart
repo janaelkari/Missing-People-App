@@ -1,125 +1,128 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_appretry/about_screen.dart';
+import 'package:flutter_appretry/NotifyScreen.dart';
+import 'package:flutter_appretry/MissingList.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: getListView(),
-        appBar: AppBar(
-          title: Text("missing people list"),
-          backgroundColor: Colors.red,
-        ),
-    )
+      title: 'Flutter Demo',
+      routes: {
+        '/about': (context) => AboutScreen(),
+        "/missing_list":(context)=>MissingList(),
+        "/contact":(context)=>ContactScreen(),
+      },
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.red,
+        // This makes the visual density adapt to the platform that you run
+        // the app on. For desktop platforms, the controls will be smaller and
+        // closer together (more dense) than on mobile platforms.
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: "Missing People"),
     );
   }
 }
-Widget getListView(){
-  //function
-  var x = ListView(
-  children: <Widget>[
-    ListTile(
-      title: Text("Ziad"),
-      subtitle: Text("hamra street"),
-      trailing: Icon(Icons.check_circle),
-      leading: CircleAvatar(
-  backgroundImage: NetworkImage("https://www.peopleshealthtrust.org.uk/sites/default/files/styles/homepage_testimonial/public/jez_buffin.jpg?itok=IGx16koW"),
-    ),),
-    ListTile(
 
-      title: Text("Jana Kanafani Git"),
-      subtitle: Text("bliss street"),
-      trailing: Icon(Icons.check_circle),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://www.newzealand.com/assets/Tourism-NZ/Tiaki/9052a21e4c/Tiaki_Hero_Thumbnail_v1__aWxvdmVrZWxseQo_FocalPointCropWzQyMCw0MjAsNTAsNTAsNzUsImpwZyIsNjUsMi41XQ.jpg"),
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  File _image;
+
+  Future getImage() async {
+    setState(() {
+
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+        actions: [FlatButton(onPressed: () {}, child: Text("proj-01"))],
       ),
-    ),
-    ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmFoPF5cPREM9B0RM5HmjjCT26b9FlcSiKA&usqp=CAU"),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text('Missing People' ),
+              accountEmail: Text("MissingPeopleTeam@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white ,
+                backgroundImage: NetworkImage("https://nen.press/wp-content/uploads/2019/02/people_graphic.png"),
+
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: (){
+                Navigator.of(context).pushNamed("/missing_list");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text("About Application"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/about");
+              },
+            ),
+
+            ListTile(
+              leading: Icon(Icons.add_alert_rounded),
+              title: Text("notifications"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/contact");
+              },
+            ),
+          ],
+        ),
       ),
-      title: Text("Jana Husseini"),
-      subtitle: Text("1st street"),
-    ),
-    ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://www.zohowebstatic.com/sites/default/files/people/ashish-vikram.jpg"),
-      ),
-      title: Text("Ahmad Ghandour"),
-      subtitle: Text("nabatiyeh street"),
-      trailing: Icon(Icons.check_circle),
-    ),
-    ListTile(
 
-      title: Text("Iyad"),
-      subtitle: Text("2nd street street"),
-      trailing: Icon(Icons.check_circle),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/pictures/picture-38061-1459177084.jpg"),
-      ),
-    ),
-    ListTile(
 
-      title: Text("Jane"),
-      subtitle: Text("beirut"),
-      trailing: Icon(Icons.check_circle),
-      leading: CircleAvatar(
-        //backgroundColor: Colors.red,
-        backgroundImage: NetworkImage("https://coda.newjobs.com/api/imagesproxy/ms/cms/content30/images/people-pleaser.png"),
-      )
-    ),
-    ListTile(
 
-      title: Text("Ihab Ali"),
-      subtitle: Text("mar elias"),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://assets.themuse.com/uploaded/companies/1309/module_persons/3020.jpg?v=58b723e902db86d853228113ac137d40d267374d4dd91417930270e854d89ca6"),
-      )
-    ),
-    ListTile(
 
-      title: Text("Saad Wehbe"),
-      subtitle: Text("nabatiyeh street"),
-      trailing: Icon(Icons.check_circle),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://e7.pngegg.com/pngimages/551/467/png-clipart-businessperson-small-business-business-plan-advertising-business-service-people.png"),
-      ),
-    ),
-    ListTile(
-
-      title: Text("Lynn Jaber"),
-      subtitle: Text("4th street"),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=6&m=1009749608&s=612x612&w=0&h=ckLkBgedCLmhG-TBvm48s6pc8kBfHt7Ppec13IgA6bo="),
-      )
-
-    ),
-    ListTile(
-      //leading: CircleAvatar(
-      //backgroundImage: AssetImage(""),
-      leading: CircleAvatar(
-      backgroundImage: NetworkImage("https://assets.themuse.com/uploaded/companies/1309/module_persons/3020.jpg?v=58b723e902db86d853228113ac137d40d267374d4dd91417930270e854d89ca6"),
-  ),
-      title: Text("Omar Abboud"),
-      subtitle: Text("nabatiyeh street"),
-
-      //
-
-    ),
-    ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=6&m=1009749608&s=612x612&w=0&h=ckLkBgedCLmhG-TBvm48s6pc8kBfHt7Ppec13IgA6bo="),
-  ),
-      title: Text("Souad Awad"),
-      subtitle: Text("nabatiyeh street"),
-      trailing: Icon(Icons.check_circle),
-    )
-  ],
-  );
-
-  return x;
+    );
+  }
 }
