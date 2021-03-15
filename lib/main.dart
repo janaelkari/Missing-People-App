@@ -31,7 +31,7 @@ Widget getListView(){
     ),),
     ListTile(
 
-      title: Text("Jana Kanafani"),
+      title: Text("Jana Kanafani Git"),
       subtitle: Text("bliss street"),
       trailing: Icon(Icons.check_circle),
       leading: CircleAvatar(
