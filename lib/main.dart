@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_appretry/Add_Missing.dart';
 import 'package:flutter_appretry/about_screen.dart';
 import 'package:flutter_appretry/NotifyScreen.dart';
 import 'package:flutter_appretry/MissingList.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/about': (context) => AboutScreen(),
         "/missing_list":(context)=>MissingList(),
         "/contact":(context)=>ContactScreen(),
+        "/Add_A_Missing":(context)=> Add_missing(),
       },
       theme: ThemeData(
         // This is the theme of your application.
@@ -123,6 +125,13 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("notifications"),
               onTap: () {
                 Navigator.of(context).pushNamed("/contact");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.add),
+              title: Text("Add A Missing"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/Add_A_Missing");
               },
             ),
           ],
