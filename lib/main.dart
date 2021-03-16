@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        //visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: "Missing People"),
     );
@@ -79,8 +79,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        actions: [FlatButton(onPressed: () {}, child: Text("proj-01"))],
+
+          title: Center(
+            child: Text('Missing People'),
+        ),
+
+        actions: [Icon(
+            Icons.search,
+            size: 30.0,
+            color: Colors.white,
+        ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -110,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             ListTile(
-              leading: Icon(Icons.add_alert_rounded),
+              leading: Icon(Icons.add_alert),
               title: Text("notifications"),
               onTap: () {
                 Navigator.of(context).pushNamed("/contact");

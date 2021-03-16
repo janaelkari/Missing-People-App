@@ -22,9 +22,11 @@ class _AboutScreenState extends State<AboutScreen> {
 
         new Text(
           ' The main problem is that many people go missing or lost for unknown reasons in various Lebanese districts.This apps role is to spread information about the missing people through connections between seekers and trackers which raises the probability of finding the missing person.',
+          textAlign: TextAlign.justify,
           style: TextStyle(
             color: Colors.red,
             fontSize: 25,
+
           ),
 
         ),
