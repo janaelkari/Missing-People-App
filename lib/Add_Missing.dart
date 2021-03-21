@@ -105,7 +105,11 @@ class _Add_missingState extends State<Add_missing> {
                 _imageView(),
                 RaisedButton(onPressed :(){
                   _showChoiceDialog(context);
-                }, child: Text("Upload Image"),)
+                }, child: Text("Upload Image"),),
+
+                RaisedButton(onPressed :(){
+                }, child: Text("Submit"),
+                color: Colors.red,),
 
               ]
           ),

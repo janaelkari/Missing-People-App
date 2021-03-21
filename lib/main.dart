@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         '/about': (context) => AboutScreen(),
-        "/missing_list":(context)=>MissingList(),
-        "/contact":(context)=>ContactScreen(),
-        "/Add_A_Missing":(context)=> Add_missing(),
+        "/contact": (context) => ContactScreen(),
+        "/Add_A_Missing": (context) => Add_missing(),
+
       },
       theme: ThemeData(
         // This is the theme of your application.
@@ -68,9 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   File _image;
 
   Future getImage() async {
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -82,34 +80,36 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
 
-          title: Center(
-            child: Text('Missing People'),
+        title: Center(
+          child: Text('Missing People'),
         ),
 
-        actions: [Icon(
+        actions: [
+          Icon(
             Icons.search,
             size: 30.0,
             color: Colors.white,
-        ),
+          ),
         ],
       ),
+
       drawer: Drawer(
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text('Missing People' ),
+              accountName: Text('Missing People'),
               accountEmail: Text("MissingPeopleTeam@gmail.com"),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white ,
-                backgroundImage: NetworkImage("https://nen.press/wp-content/uploads/2019/02/people_graphic.png"),
-
+                backgroundColor: Colors.white,
+                backgroundImage: NetworkImage(
+                    "https://nen.press/wp-content/uploads/2019/02/people_graphic.png"),
               ),
             ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text("Home"),
-              onTap: (){
-                Navigator.of(context).pushNamed("/missing_list");
+              onTap: () {
+                Navigator.of(context).pop();
               },
             ),
             ListTile(
@@ -119,28 +119,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed("/about");
               },
             ),
-
             ListTile(
               leading: Icon(Icons.add_alert),
-              title: Text("notifications"),
+              title: Text("Notifications"),
               onTap: () {
                 Navigator.of(context).pushNamed("/contact");
               },
             ),
-            ListTile(
-              leading: Icon(Icons.add),
-              title: Text("Add A Missing"),
-              onTap: () {
-                Navigator.of(context).pushNamed("/Add_A_Missing");
-              },
-            ),
+
+
+
           ],
         ),
       ),
+      body: MissingList(),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        label: Text("Add a Missing Person",
+        style: TextStyle(
+       fontSize: 18),),
+        onPressed: () {
+          Navigator.of(context).pushNamed("/Add_A_Missing");
 
-
-
-
+        },
+        backgroundColor: Colors.red,
+      ),
     );
   }
 }
