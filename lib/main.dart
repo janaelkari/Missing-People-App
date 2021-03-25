@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -5,16 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_appretry/Add_Missing.dart';
+import 'package:flutter_appretry/SpalshScreen.dart';
 import 'package:flutter_appretry/about_screen.dart';
-import 'package:flutter_appretry/NotifyScreen.dart';
+import 'package:flutter_appretry/SettingScreen.dart';
 import 'package:flutter_appretry/MissingList.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MaterialApp(
+      theme: ThemeData(primaryColor: Colors.red, accentColor: Colors.white),
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +28,6 @@ class MyApp extends StatelessWidget {
         '/about': (context) => AboutScreen(),
         "/contact": (context) => ContactScreen(),
         "/Add_A_Missing": (context) => Add_missing(),
-
       },
       theme: ThemeData(
         // This is the theme of your application.
@@ -66,13 +70,44 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   File _image;
+  bool showSplash;
 
   Future getImage() async {
     setState(() {});
   }
 
+  Timer _timer;
+  int _start = 2;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            showSplash = false;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    showSplash = true;
+    startTimer();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(showSplash) return SplashScreen();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -84,15 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text('Missing People'),
         ),
 
-        actions: [
-          Icon(
-            Icons.search,
-            size: 30.0,
-            color: Colors.white,
-          ),
-        ],
+        actions: [IconButton(icon: Icon(Icons.search), onPressed: () {})],
       ),
-
       drawer: Drawer(
         child: ListView(
           children: [
@@ -120,27 +148,24 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.add_alert),
-              title: Text("Notifications"),
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
               onTap: () {
                 Navigator.of(context).pushNamed("/contact");
               },
             ),
-
-
-
           ],
         ),
       ),
       body: MissingList(),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.add),
-        label: Text("Add a Missing Person",
-        style: TextStyle(
-       fontSize: 18),),
+        label: Text(
+          "Add a Missing Person",
+          style: TextStyle(fontSize: 18),
+        ),
         onPressed: () {
           Navigator.of(context).pushNamed("/Add_A_Missing");
-
         },
         backgroundColor: Colors.red,
       ),

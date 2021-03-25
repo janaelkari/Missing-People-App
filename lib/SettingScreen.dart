@@ -15,7 +15,7 @@ class _ContactScreenState extends State<ContactScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text(" App Notifications "),
+        title: Text(" App Settings "),
       ),
     );
   }

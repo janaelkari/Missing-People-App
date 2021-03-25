@@ -10,7 +10,7 @@ class MissingList extends StatelessWidget{
           subtitle: Text("hamra street"),
           trailing: Icon(Icons.check_circle),
           leading: CircleAvatar(
-            backgroundImage: NetworkImage("https://www.peopleshealthtrust.org.uk/sites/default/files/styles/homepage_testimonial/public/jez_buffin.jpg?itok=IGx16koW"),
+            backgroundImage: NetworkImage("https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=0hb44OrI"),
           ),),
         ListTile(
 
@@ -95,7 +95,7 @@ class MissingList extends StatelessWidget{
         ),
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: NetworkImage("https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=6&m=1009749608&s=612x612&w=0&h=ckLkBgedCLmhG-TBvm48s6pc8kBfHt7Ppec13IgA6bo="),
+            backgroundImage: NetworkImage("https://s.abcnews.com/images/GMA/191211_gma_thunberg1_hpMain_16x9_992.jpg"),
           ),
           title: Text("Souad Awad"),
           subtitle: Text("nabatiyeh street"),
