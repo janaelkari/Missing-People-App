@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1051798275652",
+    "project_id": "missing-people-app-e8019",
+    "storage_bucket": "missing-people-app-e8019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051798275652:android:8d900aa818e4e368da5e11",
+        "android_client_info": {
+          "package_name": "com.example.flutter_appretry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051798275652-r847fp8juk6cqn65t825ug2ecsdin8f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQyvymXcGov1sAdmI7ri15rszOXxC6kvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051798275652-r847fp8juk6cqn65t825ug2ecsdin8f6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
