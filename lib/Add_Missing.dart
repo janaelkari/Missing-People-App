@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class Add_missing extends StatefulWidget {
   @override
@@ -8,7 +10,13 @@ class Add_missing extends StatefulWidget {
 }
 
 class _Add_missingState extends State<Add_missing> {
-
+  final _firestore = Firestore.instance;
+  String textname;
+  String adressname;
+  String phonenum;
+  String agenum;
+  String nofm;
+  String ls;
   File imageFile;
 
   _openGallery(BuildContext context) async {
@@ -79,23 +87,41 @@ class _Add_missingState extends State<Add_missing> {
               children: <Widget>[
                 new TextField(
                   decoration: new InputDecoration(labelText: "Name of the Seeker"),
+                  onChanged: (value){
+                    textname = value;
+                  },
                 ),
                 new TextField(
                   decoration: new InputDecoration(labelText: " Seeker's Address"),
+                  onChanged: (value){
+                    adressname = value;
+                  },
                 ),
                 new TextField(
+                  onChanged: (value){
+                    phonenum = value;
+                  },
                   decoration: new InputDecoration(
                     labelText: " Seeker's Phone Number",
                   ),
                   keyboardType: TextInputType.number,
                 ),
                 new TextField(
+                  onChanged: (value){
+                    nofm = value;
+                  },
                   decoration: new InputDecoration(labelText: "Name of the Missing"),
                 ),
                 new TextField(
+                  onChanged: (value){
+                    agenum = value;
+                  },
                   decoration: new InputDecoration(labelText: "Age of the Missing"),
                 ),
                 new TextField(
+                  onChanged: (value){
+                    ls = value;
+                  },
                   decoration: new InputDecoration(labelText: "Last place seen"),
                 ),
 
@@ -108,6 +134,14 @@ class _Add_missingState extends State<Add_missing> {
                 }, child: Text("Upload Image"),),
 
                 RaisedButton(onPressed :(){
+                    _firestore.collection('m').add({
+                      'name': textname,
+                      'adress': adressname,
+                      'phone': phonenum,
+                      'age' : agenum,
+                      'nameofmissing': nofm,
+                      'lastseen': ls,
+                    });
                 }, child: Text("Submit"),
                 color: Colors.red,),
 
