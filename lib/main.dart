@@ -14,12 +14,16 @@ import 'package:provider/provider.dart';
 import 'Authentication/Wrapper.dart';
 import 'Authentication/auth.dart';
 import 'Authentication/user.dart';
+import 'missing_notifier.dart';
 
-void main() => runApp(MaterialApp(
-      theme: ThemeData(primaryColor: Colors.red, accentColor: Colors.white),
-      debugShowCheckedModeBanner: false,
-      home: MyApp(),
-    ));
+void main() => runApp(MultiProvider(
+  providers: [
+    ChangeNotifierProvider(
+      create: (context) => Notifier(),
+    ),
+  ],
+  child: MyApp(),
+));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
