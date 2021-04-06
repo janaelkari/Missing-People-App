@@ -61,7 +61,6 @@ class _Add_missingState extends State<Add_missing> {
     });
   }
 ////////////////////////////////////////////////////////////////////////////////
-
   Widget _imageView(){
     if (imageFile == null) {
       return Text("No Image Selected!");
@@ -86,15 +85,15 @@ class _Add_missingState extends State<Add_missing> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new TextField(
-                  decoration: new InputDecoration(labelText: "Name of the Seeker"),
+                  decoration: new InputDecoration(labelText: "Name of the Missing"),
                   onChanged: (value){
                     textname = value;
                   },
                 ),
                 new TextField(
-                  decoration: new InputDecoration(labelText: " Seeker's Address"),
+                  decoration: new InputDecoration(labelText: "Age of the missing"),
                   onChanged: (value){
-                    adressname = value;
+                    agenum = value;
                   },
                 ),
                 new TextField(
@@ -102,7 +101,7 @@ class _Add_missingState extends State<Add_missing> {
                     phonenum = value;
                   },
                   decoration: new InputDecoration(
-                    labelText: " Seeker's Phone Number",
+                    labelText: " Phone Number",
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -110,19 +109,19 @@ class _Add_missingState extends State<Add_missing> {
                   onChanged: (value){
                     nofm = value;
                   },
-                  decoration: new InputDecoration(labelText: "Name of the Missing"),
+                  decoration: new InputDecoration(labelText: "City"),
                 ),
                 new TextField(
                   onChanged: (value){
                     agenum = value;
                   },
-                  decoration: new InputDecoration(labelText: "Age of the Missing"),
+                  decoration: new InputDecoration(labelText: "Address"),
                 ),
                 new TextField(
                   onChanged: (value){
                     ls = value;
                   },
-                  decoration: new InputDecoration(labelText: "Last place seen"),
+                  decoration: new InputDecoration(labelText: "Description"),
                 ),
 
                 SizedBox(
@@ -134,16 +133,16 @@ class _Add_missingState extends State<Add_missing> {
                 }, child: Text("Upload Image"),),
 
                 RaisedButton(onPressed :(){
-                    _firestore.collection('m').add({
-                      'name': textname,
-                      'adress': adressname,
-                      'phone': phonenum,
-                      'age' : agenum,
-                      'nameofmissing': nofm,
-                      'lastseen': ls,
-                    });
+                  _firestore.collection('m').add({
+                    'name': textname,
+                    'adress': adressname,
+                    'phone': phonenum,
+                    'age' : agenum,
+                    'nameofmissing': nofm,
+                    'lastseen': ls,
+                  });
                 }, child: Text("Submit"),
-                color: Colors.red,),
+                  color: Colors.red,),
 
               ]
           ),

@@ -16,50 +16,29 @@ import 'Authentication/auth.dart';
 import 'Authentication/user.dart';
 
 void main() => runApp(MaterialApp(
-      theme: ThemeData(primaryColor: Colors.red, accentColor: Colors.white),
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primaryColor: Colors.red,
+      ),
       home: MyApp(),
     ));
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
 
   @override
-  Widget build(BuildContext context) {
-    return StreamProvider<User>.value(
-    value: AuthService().user,
-     child: MaterialApp(
-      title: 'Flutter Demo',
-      routes: {
-        '/about': (context) => AboutScreen(),
-        "/contact": (context) => ContactScreen(),
-        "/Add_A_Missing": (context) => Add_missing(),
-      },
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-
-      ),
-      home: Wrapper(),
-      ),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  File _image;
+class _MyAppState extends State<MyApp> {
   bool showSplash;
 
-  Future getImage() async {
-    setState(() {});
+  @override
+  void initState() {
+    showSplash = true;
+
+    startTimer();
+
+    super.initState();
   }
 
   Timer _timer;
@@ -85,9 +64,47 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  Widget build(BuildContext context) {
+
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        routes: {
+          '/about': (context) => AboutScreen(),
+          "/contact": (context) => ContactScreen(),
+          "/Add_A_Missing": (context) => Add_missing(),
+        },
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: showSplash ? SplashScreen() : Wrapper(),
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  File _image;
+
+  Future getImage() async {
+    setState(() {});
+  }
+
+  Timer _timer;
+  int _start = 2;
+
+  @override
   void initState() {
-    showSplash = true;
-    startTimer();
     super.initState();
   }
 
@@ -95,15 +112,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if(showSplash) return SplashScreen();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-
         title: Center(
           child: Text('Missing People'),
         ),
-
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
