@@ -1,6 +1,6 @@
 # flutter_appretry
 
-A new Flutter application.
+This is a 4 memeber group flutter mobile application project built using flutter for front-end and firebase for back-end. This application includes the CRUD operations.
 
 ## Getting Started
 
